@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-
     <div class="dashboard-layout">
         <!-- Barra de Navegación Lateral -->
         <aside class="sidebar">
@@ -25,7 +24,6 @@
                     <i class="fas fa-history nav-icon"></i>
                     <span>Historial</span>
                 </a>
-               
                 <a href="#help-section" class="nav-item">
                     <i class="fas fa-question-circle nav-icon"></i>
                     <span>Ayuda</span>
@@ -37,55 +35,112 @@
         <main class="main-content">
             <!-- Sección de la Calculadora -->
             <div id="calculator-section" class="page-section active-section">
-                <div class="calculator-container">
-                    <header>
-                        <i class="fas fa-calculator"></i>
-                        <h1>Calculadora de Integrales</h1>
-                        <p>Ingresa una función, los límites y presiona "Calcular".</p>
-                    </header>
+                <!-- Layout superior: Formulario + Atajos -->
+                <div class="calculator-layout">
+                    <!-- Sección del formulario -->
+                    <div class="calculator-form-section">
+                        <header>
+                            <i class="fas fa-calculator"></i>
+                            <h1>Calculadora de Integrales</h1>
+                            <p>Ingresa una función, los límites y presiona "Calcular".</p>
+                        </header>
 
-                    <form id="calculadora-form" class="form-container">
-                        <div class="input-group">
-                            <label for="funcion">Función f(x):</label>
-                            <input type="text" id="funcion" name="funcion" placeholder="Ej: x^2 + sin(x)" required>
-                        </div>
-                        
-                        <div class="limits-group">
+                        <form id="calculadora-form" class="form-container">
                             <div class="input-group">
-                                <label for="limite_inferior">Límite Inferior (a):</label>
-                                <input type="text" id="limite_inferior" name="limite_inferior" placeholder="Ej: 0" required>
+                                <label for="funcion">Función f(x):</label>
+                                <input type="text" id="funcion" name="funcion" placeholder="Ej: x^2 + sin(x)" required>
                             </div>
-                            <div class="input-group">
-                                <label for="limite_superior">Límite Superior (b):</label>
-                                <input type="text" id="limite_superior" name="limite_superior" placeholder="Ej: 1" required>
+                            
+                            <div class="limits-group">
+                                <div class="input-group">
+                                    <label for="limite_inferior">Límite Inferior (a):</label>
+                                    <input type="text" id="limite_inferior" name="limite_inferior" placeholder="Ej: 0" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="limite_superior">Límite Superior (b):</label>
+                                    <input type="text" id="limite_superior" name="limite_superior" placeholder="Ej: 1" required>
+                                </div>
                             </div>
+
+                            <button type="submit" class="calculate-btn">
+                                <i class="fas fa-play"></i> Calcular Integral
+                            </button>
+                        </form>
+
+                        <div id="resultado-container" style="margin-top: 30px; border-top: 2px solid var(--border-color); padding-top: 20px;">
+                            <div id="resultado"></div>
+                            <button id="download-pdf-btn" class="calculate-btn" style="display:none; margin-top: 15px;">
+                                <i class="fas fa-file-pdf"></i> Descargar PDF
+                            </button>
                         </div>
-
-                        <button type="submit" class="calculate-btn">
-                            <i class="fas fa-play"></i> Calcular Integral
-                        </button>
-                    </form>
-
-                    <div id="resultado-container">
-                        <div id="resultado"></div>
                     </div>
-                    <div id="resultado-container">
-    <div id="resultado"></div>
-    <button id="download-pdf-btn" class="calculate-btn" style="display:none; margin-top: 15px;">
-        <i class="fas fa-file-pdf"></i> Descargar PDF
-    </button>
-</div>
+
+                    <!-- Sección de atajos -->
+                    <div class="shortcuts-section">
+                        <div class="shortcuts-header">
+                            <h3><i class="fas fa-keyboard"></i> Atajos de Escritura</h3>
+                        </div>
+
+                        <div class="shortcuts-section-title">Funciones Básicas</div>
+                        <div class="shortcuts-grid">
+                            <button class="shortcut-btn function-btn" data-insert="sin(" data-target="funcion">sin(x)</button>
+                            <button class="shortcut-btn function-btn" data-insert="cos(" data-target="funcion">cos(x)</button>
+                            <button class="shortcut-btn function-btn" data-insert="tan(" data-target="funcion">tan(x)</button>
+                            <button class="shortcut-btn function-btn" data-insert="ln(" data-target="funcion">ln(x)</button>
+                            <button class="shortcut-btn function-btn" data-insert="log(" data-target="funcion">log(x)</button>
+                            <button class="shortcut-btn function-btn" data-insert="sqrt(" data-target="funcion">√(x)</button>
+                            <button class="shortcut-btn function-btn" data-insert="exp(" data-target="funcion">e^x</button>
+                            <button class="shortcut-btn function-btn" data-insert="abs(" data-target="funcion">|x|</button>
+                        </div>
+
+                        <div class="shortcuts-section-title">Operadores</div>
+                        <div class="shortcuts-grid">
+                            <button class="shortcut-btn operator-btn" data-insert="^2" data-target="funcion">x²</button>
+                            <button class="shortcut-btn operator-btn" data-insert="^3" data-target="funcion">x³</button>
+                            <button class="shortcut-btn operator-btn" data-insert="^" data-target="funcion">x^n</button>
+                            <button class="shortcut-btn operator-btn" data-insert="*" data-target="funcion">×</button>
+                            <button class="shortcut-btn operator-btn" data-insert="/" data-target="funcion">÷</button>
+                            <button class="shortcut-btn operator-btn" data-insert="+" data-target="funcion">+</button>
+                            <button class="shortcut-btn operator-btn" data-insert="-" data-target="funcion">-</button>
+                            <button class="shortcut-btn operator-btn" data-insert="(" data-target="funcion">(</button>
+                            <button class="shortcut-btn operator-btn" data-insert=")" data-target="funcion">)</button>
+                        </div>
+
+                        <div class="shortcuts-section-title">Variables y Constantes</div>
+                        <div class="shortcuts-grid">
+                            <button class="shortcut-btn constant-btn" data-insert="x" data-target="funcion">x</button>
+                            <button class="shortcut-btn constant-btn" data-insert="pi" data-target="funcion">π</button>
+                            <button class="shortcut-btn constant-btn" data-insert="e" data-target="funcion">e</button>
+                        </div>
+
+                        <div class="shortcuts-section-title">Límites Comunes</div>
+                        <div class="shortcuts-grid">
+                            <button class="shortcut-btn" data-insert="0" data-target="limite_inferior">0</button>
+                            <button class="shortcut-btn" data-insert="1" data-target="limite_inferior">1</button>
+                            <button class="shortcut-btn" data-insert="pi" data-target="limite_inferior">π</button>
+                            <button class="shortcut-btn" data-insert="1" data-target="limite_superior">1</button>
+                            <button class="shortcut-btn" data-insert="pi" data-target="limite_superior">π</button>
+                            <button class="shortcut-btn" data-insert="oo" data-target="limite_superior">∞</button>
+                        </div>
+
+                        <button class="clear-input-btn" onclick="clearCurrentInput()">
+                            <i class="fas fa-eraser"></i> Limpiar Campo Activo
+                        </button>
+                    </div>
                 </div>
 
-                <div class="graph-container">
-                    <h2>Gráfica de la función</h2>
-                    <div id="graph-placeholder">
-                        <p>La gráfica aparecerá después del cálculo.</p>
+                <!-- Layout inferior: Resultado + Gráfica -->
+                <div class="results-layout">
+                    <div class="graph-container">
+                        <h2>Gráfica de la función</h2>
+                        <div id="graph-placeholder">
+                            <p>La gráfica aparecerá después del cálculo.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Sección de Historial (oculta por defecto) -->
+            <!-- Sección de Historial -->
             <div id="history-section" class="page-section">
                 <div class="section-card">
                     <div class="history-header">
@@ -99,8 +154,7 @@
                 </div>
             </div>
 
-
-            <!-- Sección de Ayuda (oculta por defecto) -->
+            <!-- Sección de Ayuda -->
             <div id="help-section" class="page-section">
                 <div class="section-card">
                     <h2><i class="fas fa-question-circle"></i> Ayuda y Soporte</h2>
@@ -113,25 +167,25 @@
                                 <li><strong>Función a integrar:</strong> Aquí debes ingresar la función matemática, por ejemplo: <code>x^2</code>, <code>sin(x)</code>, <code>1/(x)</code>. Usa <code>^</code> para exponentes, <code>*</code> para multiplicación y las funciones trigonométricas estándar.</li>
                                 <li><strong>Límite Inferior y Superior:</strong> Ingresa los valores numéricos para el intervalo en el que deseas calcular la integral.</li>
                                 <li><strong>Botón "Calcular":</strong> Haz clic en este botón para obtener el resultado de la integral.</li>
-                                <li><strong>Botón "Guardar en Memoria":</strong> Una vez que obtengas un resultado, puedes guardarlo permanentemente en la sección de memoria para usarlo más tarde.</li>
+                                <li><strong>Atajos de Escritura:</strong> Usa los botones de atajos para insertar rápidamente funciones, operadores y constantes comunes.</li>
                             </ul>
 
-                            <h3>2. La Barra de Navegación</h3>
-                            <p>La barra lateral te permite moverte entre las diferentes secciones de la aplicación:</p>
+                            <h3>2. Atajos de Escritura</h3>
+                            <p>Los atajos te permiten insertar rápidamente elementos matemáticos comunes:</p>
                             <ul>
-                                <li><strong>Calculadora:</strong> Te lleva a la herramienta principal para resolver integrales.</li>
-                                <li><strong>Historial:</strong> Muestra un registro de todas las operaciones que has realizado recientemente.</li>
-                                <li><strong>Ayuda:</strong> La sección que estás leyendo ahora.</li>
+                                <li><strong>Funciones:</strong> sin(x), cos(x), ln(x), sqrt(x), etc.</li>
+                                <li><strong>Operadores:</strong> Potencias (x², x³), operaciones básicas (+, -, ×, ÷)</li>
+                                <li><strong>Constantes:</strong> π (pi), e, variable x</li>
+                                <li><strong>Límites comunes:</strong> 0, 1, π, ∞ para usar en los límites de integración</li>
                             </ul>
-                            
+
                             <h3>3. El Historial de Operaciones</h3>
                             <p>El historial guarda automáticamente cada cálculo que realizas.</p>
                             <ul>
                                 <li><strong>Ver Historial:</strong> Haz clic en "Historial" en la barra de navegación para ver una lista de todas tus operaciones pasadas.</li>
-                                <li><strong>Restaurar una Operación:</strong> Haz clic en cualquier elemento del historial para que sus datos (función y límites) se carguen automáticamente en la calculadora.</li>
+                                <li><strong>Restaurar una Operación:</strong> Haz clic en cualquier elemento del historial para que sus datos se carguen automáticamente en la calculadora.</li>
                                 <li><strong>Borrar Historial:</strong> El botón "Borrar Historial" te permite eliminar todas las operaciones guardadas.</li>
                             </ul>
-
 
                             <p>Si tienes alguna otra pregunta o necesitas ayuda, no dudes en explorar la aplicación. ¡Disfruta de tus cálculos!</p>
                         </div>
@@ -148,7 +202,4 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
     <script src="/static/js/script.js"></script>
-</body>
-</html>

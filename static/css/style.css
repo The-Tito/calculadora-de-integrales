@@ -5,7 +5,7 @@
             --sidebar-bg-color: #2c3e50;
             --card-bg-color: #ffffff;
             --primary-color: #2c3e50;
-            --secondary-color: #34495e; /* Usado para encabezados */
+            --secondary-color: #34495e;
             --accent-color: #3498db;
             --accent-color-hover: #2980b9;
             --text-color: #34495e;
@@ -27,7 +27,6 @@
             color: var(--text-color);
         }
 
-        /* Diseño de Dashboard */
         .dashboard-layout {
             display: flex;
             min-height: 100vh;
@@ -108,7 +107,6 @@
             position: relative;
         }
 
-        /* Estilos de las secciones de la página */
         .page-section {
             display: none;
             animation: fadeIn 0.5s ease-in-out;
@@ -135,22 +133,46 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Contenedor principal para el diseño de dos columnas (dentro de la calculadora) */
-        .main-layout {
+        /* Nueva estructura para la calculadora con atajos */
+        .calculator-layout {
             display: flex;
             gap: 30px;
             width: 100%;
             align-items: flex-start;
         }
 
-        .calculator-container {
+        .calculator-form-section {
+            background-color: var(--card-bg-color);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            flex: 2;
+            box-sizing: border-box;
+        }
+
+        .shortcuts-section {
             background-color: var(--card-bg-color);
             border-radius: 12px;
             box-shadow: var(--shadow);
             padding: 30px;
             flex: 1;
             box-sizing: border-box;
-            transition: all 0.3s ease;
+        }
+
+        .results-layout {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        .result-container {
+            background-color: var(--card-bg-color);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            flex: 1;
+            box-sizing: border-box;
         }
 
         .graph-container {
@@ -158,7 +180,7 @@
             border-radius: 12px;
             box-shadow: var(--shadow);
             padding: 30px;
-            flex: 3;
+            flex: 1;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
@@ -167,14 +189,6 @@
             text-align: center;
         }
 
-        #graph-placeholder img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-
-        /* El resto del CSS de la calculadora */
         header {
             text-align: center;
             margin-bottom: 30px;
@@ -272,10 +286,88 @@
             transform: translateY(0);
         }
 
-        #resultado-container {
-            margin-top: 30px;
-            border-top: 2px solid var(--border-color);
-            padding-top: 20px;
+        /* Estilos para la calculadora de atajos */
+        .shortcuts-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .shortcuts-header h3 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.3em;
+        }
+
+        .shortcuts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .shortcut-btn {
+            padding: 12px 8px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 500;
+            color: var(--text-color);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 45px;
+        }
+
+        .shortcut-btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .shortcut-btn.function-btn {
+            background-color: #e8f4fd;
+            border-color: var(--accent-color);
+        }
+
+        .shortcut-btn.operator-btn {
+            background-color: #f8f9fa;
+            border-color: var(--secondary-color);
+        }
+
+        .shortcut-btn.constant-btn {
+            background-color: #fff3cd;
+            border-color: #ffc107;
+        }
+
+        .shortcuts-section-title {
+            font-size: 0.9em;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin: 15px 0 10px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        .clear-input-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--error-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: background-color 0.2s ease;
+        }
+
+        .clear-input-btn:hover {
+            background-color: #c0392b;
         }
 
         #resultado {
@@ -305,6 +397,13 @@
             border-bottom-color: var(--error-color);
         }
 
+        #graph-placeholder img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
         .loading {
             display: flex;
             align-items: center;
@@ -327,7 +426,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Barra de estado */
         .status-bar {
             position: fixed;
             bottom: 0;
@@ -341,67 +439,7 @@
             z-index: 100;
         }
 
-        /* Responsividad para pantallas pequeñas */
-        @media (max-width: 992px) {
-            .dashboard-layout {
-                flex-direction: column;
-            }
-            .sidebar {
-                width: 100%;
-                height: auto;
-                padding: 10px 20px;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            }
-            .logo-container {
-                margin-bottom: 0;
-            }
-            .nav-menu {
-                flex-direction: row;
-                gap: 5px;
-                padding: 0;
-                overflow-x: auto;
-            }
-            .nav-item {
-                flex-direction: column;
-                text-align: center;
-                gap: 5px;
-                padding: 8px 10px;
-                flex-shrink: 0;
-            }
-            .main-content {
-                padding: 20px;
-            }
-            .main-layout {
-                flex-direction: column;
-                align-items: center;
-            }
-            .calculator-container,
-            .graph-container {
-                width: 100%;
-            }
-            .status-bar {
-                position: static;
-                margin-top: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .limits-group {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .calculator-container {
-                padding: 20px;
-            }
-            .logo-text {
-                display: none;
-            }
-        }
-
-        /* Estilos de la sección de Historial */
+        /* Estilos del historial */
         .history-header {
             display: flex;
             justify-content: space-between;
@@ -479,7 +517,7 @@
             font-style: italic;
             padding: 20px;
         }
-        /* Estilos específicos para la sección de ayuda */
+
         .help-content h3 {
             color: var(--secondary-color);
             margin-top: 20px;
@@ -500,4 +538,65 @@
             border: 0;
             border-top: 1px solid var(--border-color);
             margin: 20px 0;
+        }
+
+        /* Responsividad */
+        @media (max-width: 992px) {
+            .dashboard-layout {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px 20px;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+            .logo-container {
+                margin-bottom: 0;
+            }
+            .nav-menu {
+                flex-direction: row;
+                gap: 5px;
+                padding: 0;
+                overflow-x: auto;
+            }
+            .nav-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 5px;
+                padding: 8px 10px;
+                flex-shrink: 0;
+            }
+            .main-content {
+                padding: 20px;
+            }
+            .calculator-layout {
+                flex-direction: column;
+            }
+            .results-layout {
+                flex-direction: column;
+            }
+            .status-bar {
+                position: static;
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .limits-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .calculator-form-section {
+                padding: 20px;
+            }
+            .logo-text {
+                display: none;
+            }
+            .shortcuts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }

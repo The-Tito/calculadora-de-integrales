@@ -1,0 +1,24 @@
+Intrucciones de ejecucion.
+Es crucial contar con la version 3.xx de pyhon.
+
+Antes de poder ejecutar nuestra calculadora de intregales se debe asegurar de contar con las librerias 
+requeridas.
+
+En este conjunto de archivos podra encontrar uno llamado "requerimientos.txt" el cual cuenta con las 
+librerias necestarias para la ejecucion.
+Para poder instalar estas librerias basta con abrir la carpeta del proyecto en el cmd y ejecutar el siguiente comando
+
+pip install -r requerimientos.txt
+
+Este iniciara la instalaccion de las librerias.
+
+Una vez instaladas solo restará inicializar el proyecto con la siguiente linea, de igual manera en las lineas de comando 
+de nuestro cmd estando en la carpeta del proyecto.
+
+python app.py
+
+Para poder visualizar el programa se copiara la direccion proporcionada por el sistema
+
+* Running on http://127.0.0.1:5000/
+
+y se pegara en nuestro navegador.

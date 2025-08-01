@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Integrales</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <!-- Barra de Navegación Lateral -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <i class="fas fa-calculator logo-icon"></i>
+                <span class="logo-text">Integral</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#calculator-section" class="nav-item active-nav-item">
+                    <i class="fas fa-calculator nav-icon"></i>
+                    <span>Calculadora</span>
+                </a>
+                <a href="#history-section" class="nav-item">
+                    <i class="fas fa-history nav-icon"></i>
+                    <span>Historial</span>
+                </a>
+               
+                <a href="#help-section" class="nav-item">
+                    <i class="fas fa-question-circle nav-icon"></i>
+                    <span>Ayuda</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <!-- Sección de la Calculadora -->
+            <div id="calculator-section" class="page-section active-section">
+                <div class="calculator-container">
+                    <header>
+                        <i class="fas fa-calculator"></i>
+                        <h1>Calculadora de Integrales</h1>
+                        <p>Ingresa una función, los límites y presiona "Calcular".</p>
+                    </header>
+
+                    <form id="calculadora-form" class="form-container">
+                        <div class="input-group">
+                            <label for="funcion">Función f(x):</label>
+                            <input type="text" id="funcion" name="funcion" placeholder="Ej: x^2 + sin(x)" required>
+                        </div>
+                        
+                        <div class="limits-group">
+                            <div class="input-group">
+                                <label for="limite_inferior">Límite Inferior (a):</label>
+                                <input type="text" id="limite_inferior" name="limite_inferior" placeholder="Ej: 0" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="limite_superior">Límite Superior (b):</label>
+                                <input type="text" id="limite_superior" name="limite_superior" placeholder="Ej: 1" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="calculate-btn">
+                            <i class="fas fa-play"></i> Calcular Integral
+                        </button>
+                    </form>
+
+                    <div id="resultado-container">
+                        <div id="resultado"></div>
+                    </div>
+                    <div id="resultado-container">
+    <div id="resultado"></div>
+    <button id="download-pdf-btn" class="calculate-btn" style="display:none; margin-top: 15px;">
+        <i class="fas fa-file-pdf"></i> Descargar PDF
+    </button>
+</div>
+                </div>
+
+                <div class="graph-container">
+                    <h2>Gráfica de la función</h2>
+                    <div id="graph-placeholder">
+                        <p>La gráfica aparecerá después del cálculo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de Historial (oculta por defecto) -->
+            <div id="history-section" class="page-section">
+                <div class="section-card">
+                    <div class="history-header">
+                        <h2><i class="fas fa-history"></i> Historial de Operaciones</h2>
+                        <button id="clear-history-btn" class="clear-btn"><i class="fas fa-trash-alt"></i> Limpiar Historial</button>
+                    </div>
+                    
+                    <div id="history-list">
+                        <p class="empty-message">Aún no hay operaciones en el historial.</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Sección de Ayuda (oculta por defecto) -->
+            <div id="help-section" class="page-section">
+                <div class="section-card">
+                    <h2><i class="fas fa-question-circle"></i> Ayuda y Soporte</h2>
+                    <p>Aquí encontrarás información sobre cómo usar la calculadora, los formatos de funciones aceptados y el manejo de errores.</p>
+                    <div class="help-content">
+                        <div class="help-section-content">
+                            <h3>1. La Calculadora</h3>
+                            <p>La sección de la Calculadora es la herramienta principal para resolver integrales definidas.</p>
+                            <ul>
+                                <li><strong>Función a integrar:</strong> Aquí debes ingresar la función matemática, por ejemplo: <code>x^2</code>, <code>sin(x)</code>, <code>1/(x)</code>. Usa <code>^</code> para exponentes, <code>*</code> para multiplicación y las funciones trigonométricas estándar.</li>
+                                <li><strong>Límite Inferior y Superior:</strong> Ingresa los valores numéricos para el intervalo en el que deseas calcular la integral.</li>
+                                <li><strong>Botón "Calcular":</strong> Haz clic en este botón para obtener el resultado de la integral.</li>
+                                <li><strong>Botón "Guardar en Memoria":</strong> Una vez que obtengas un resultado, puedes guardarlo permanentemente en la sección de memoria para usarlo más tarde.</li>
+                            </ul>
+
+                            <h3>2. La Barra de Navegación</h3>
+                            <p>La barra lateral te permite moverte entre las diferentes secciones de la aplicación:</p>
+                            <ul>
+                                <li><strong>Calculadora:</strong> Te lleva a la herramienta principal para resolver integrales.</li>
+                                <li><strong>Historial:</strong> Muestra un registro de todas las operaciones que has realizado recientemente.</li>
+                                <li><strong>Ayuda:</strong> La sección que estás leyendo ahora.</li>
+                            </ul>
+                            
+                            <h3>3. El Historial de Operaciones</h3>
+                            <p>El historial guarda automáticamente cada cálculo que realizas.</p>
+                            <ul>
+                                <li><strong>Ver Historial:</strong> Haz clic en "Historial" en la barra de navegación para ver una lista de todas tus operaciones pasadas.</li>
+                                <li><strong>Restaurar una Operación:</strong> Haz clic en cualquier elemento del historial para que sus datos (función y límites) se carguen automáticamente en la calculadora.</li>
+                                <li><strong>Borrar Historial:</strong> El botón "Borrar Historial" te permite eliminar todas las operaciones guardadas.</li>
+                            </ul>
+
+
+                            <p>Si tienes alguna otra pregunta o necesitas ayuda, no dudes en explorar la aplicación. ¡Disfruta de tus cálculos!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barra de estado -->
+            <div class="status-bar">
+                <span id="status-message">Listo para calcular...</span>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
